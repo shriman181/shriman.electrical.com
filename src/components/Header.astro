@@ -1,0 +1,100 @@
+---
+import company from '../data/company.json';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/products/', label: 'Products' },
+  { href: '/brands/', label: 'Brands' },
+  { href: '/industries/', label: 'Industries' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' }
+];
+const isOn = (href) => path === href || (href !== '/' && path.startsWith(href));
+---
+<div class="util">
+  <div class="wrap util-in">
+    <span>Industrial electrical distribution since 2008 &middot; Juinagar, Navi Mumbai</span>
+    <a href={'tel:' + company.primaryPhoneHref}>+91 {company.primaryPhone}</a>
+  </div>
+</div>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" class="brand" aria-label={company.name + ' home'}>
+      <img src="/logo.png" alt={company.name} width="200" height="67" />
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      {nav.map(i => (
+        <a href={i.href} class={isOn(i.href) ? 'on' : ''} aria-current={isOn(i.href) ? 'page' : undefined}>{i.label}</a>
+      ))}
+    </nav>
+
+    <a class="btn btn-primary cta" href="/contact/">Get a quote</a>
+
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-burger>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden data-drawer>
+  <nav class="drawer-nav" aria-label="Mobile">
+    {nav.map(i => <a href={i.href}>{i.label}</a>)}
+    <a class="btn btn-primary drawer-cta" href="/contact/">Get a quote</a>
+  </nav>
+</div>
+
+<style>
+.util { background: var(--navy); color: #B9C6DC; font-size: 13px; }
+.util-in { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); min-height: 38px; }
+.util a { color: #FFFFFF; font-variant-numeric: tabular-nums; }
+@media (max-width: 767px) { .util-in span { display: none; } .util-in { justify-content: flex-end; } }
+
+.hdr { position: sticky; top: 0; z-index: 40; background: var(--surface); border-bottom: 1px solid var(--line); }
+.hdr-in { display: flex; align-items: center; gap: var(--s5); min-height: 76px; }
+.brand { flex: 0 0 auto; }
+.brand img { width: 200px; height: auto; }
+@media (max-width: 767px) { .brand img { width: 152px; } .hdr-in { min-height: 64px; } }
+
+.nav { display: none; margin-left: auto; gap: var(--s5); }
+.nav a { color: var(--navy); font-size: 15px; font-weight: 500; padding-block: var(--s2); border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--blue); text-decoration: none; }
+.nav a.on { border-bottom-color: var(--copper); }
+
+.cta { display: none; }
+
+@media (min-width: 1024px) {
+  .nav { display: flex; }
+  .cta { display: inline-flex; min-height: 44px; }
+}
+
+.burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; margin-left: auto; width: 48px; height: 48px; padding: 0 12px; background: none; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+.burger span { display: block; height: 2px; background: var(--navy); border-radius: 2px; }
+@media (min-width: 1024px) { .burger { display: none; } }
+
+.drawer { position: fixed; inset: 0; z-index: 50; background: var(--surface); padding: 88px var(--gutter) var(--s8); overflow-y: auto; }
+.drawer-nav { display: flex; flex-direction: column; gap: var(--s2); }
+.drawer-nav a { font-size: 20px; font-weight: 500; color: var(--navy); padding: var(--s4) 0; border-bottom: 1px solid var(--line); }
+.drawer-cta { margin-top: var(--s5); border-bottom: 0; color: #fff; font-size: 16px; }
+</style>
+
+<script>
+  const burger = document.querySelector('[data-burger]');
+  const drawer = document.querySelector('[data-drawer]');
+  if (burger && drawer) {
+    burger.addEventListener('click', () => {
+      const open = drawer.hasAttribute('hidden');
+      if (open) { drawer.removeAttribute('hidden'); } else { drawer.setAttribute('hidden', ''); }
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        drawer.setAttribute('hidden', '');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+</script>

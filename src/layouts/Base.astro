@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import company from '../data/company.json';
+
+const { title, description, crumb } = Astro.props;
+const site = 'https://shrimanelectrical.com';
+const canonical = new URL(Astro.url.pathname, site).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: company.name,
+  url: site,
+  telephone: company.primaryPhoneHref,
+  email: company.email,
+  foundingDate: String(company.founded),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.address.street + ', ' + company.address.building,
+    addressLocality: company.address.locality + ', ' + company.address.city,
+    addressRegion: company.address.state,
+    postalCode: company.address.postcode,
+    addressCountry: company.address.country
+  },
+  areaServed: 'Navi Mumbai, Thane and Mumbai',
+  description: 'Distributor of industrial electrical products in Navi Mumbai since 2008.'
+};
+---
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={company.shortName} />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<Header />
+<main id="main">
+  <slot />
+</main>
+<Footer />
+<MobileBar />
+</body>
+</html>

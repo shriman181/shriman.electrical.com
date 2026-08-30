@@ -1,0 +1,212 @@
+[
+  {
+    "slug": "switchgear-protection",
+    "name": "Switchgear and protection",
+    "short": "Switchgear",
+    "intro": "Breakers, starters, contactors and distribution boards for LT panels and feeders, in the brands most commonly specified on Indian panel schedules.",
+    "brands": [
+      {
+        "brand": "L&T Switchgear",
+        "lines": [
+          "ACB, MCCB, SFU, HRC fuses and changeover switches",
+          "Motor starters",
+          "Power contactors, relays, MPCB and timers"
+        ]
+      },
+      {
+        "brand": "L&T Exora",
+        "lines": ["MCB", "Distribution boards"]
+      },
+      {
+        "brand": "Siemens",
+        "lines": [
+          "ACB, MCCB, SFU and HRC fuses",
+          "Power contactors, relays, MPCB and timers",
+          "MCB, RCCB, RCBO and MCB distribution boards",
+          "Indicating lamps, push button stations and limit switches"
+        ]
+      },
+      {
+        "brand": "Schneider",
+        "lines": [
+          "Power contactors, relays and MPCB",
+          "MCB and MCB distribution boards"
+        ]
+      },
+      {
+        "brand": "Legrand",
+        "lines": [
+          "MCB, RCCB and MCB distribution boards",
+          "AC boxes, plug and socket DB"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "power-quality",
+    "name": "Power quality and correction",
+    "short": "Power quality",
+    "intro": "Capacitors, APFC panels, reactors, harmonic filters and stabilizers for plants carrying penalty on power factor or running sensitive loads.",
+    "brands": [
+      {
+        "brand": "L&T Capacitors",
+        "lines": [
+          "LT power capacitors",
+          "Automatic power factor correction panels",
+          "Reactors"
+        ]
+      },
+      {
+        "brand": "Neptune",
+        "lines": [
+          "Capacitors and reactors",
+          "APFC panels",
+          "Active harmonic filters",
+          "Plug and socket"
+        ]
+      },
+      {
+        "brand": "TSI Power",
+        "lines": ["IGBT based voltage stabilizers"]
+      },
+      {
+        "brand": "Krycard",
+        "lines": ["Servo stabilizers", "Online UPS"]
+      }
+    ]
+  },
+  {
+    "slug": "cables-and-wires",
+    "name": "Cables and wires",
+    "short": "Cables and wires",
+    "intro": "HT and LT power cable, flexible copper, house wire, and the Lapp specialty range for control, data and fibre.",
+    "brands": [
+      {
+        "brand": "Polycab",
+        "lines": [
+          "HT cables",
+          "LT cables, aluminium armoured and copper armoured",
+          "Multicore flexible copper cables and wires",
+          "House wire FR and FRLS"
+        ]
+      },
+      {
+        "brand": "Lapp",
+        "lines": [
+          "Olflex connecting and control cables",
+          "Unitronic data cables",
+          "Hitronic fibre optic cables",
+          "Etherline active network components"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "drives-and-automation",
+    "name": "Drives and automation",
+    "short": "Drives and automation",
+    "intro": "Variable frequency drives, servo, PLC and HMI for machine builders and process lines.",
+    "brands": [
+      {
+        "brand": "Mitsubishi",
+        "lines": ["Servo motor and drive", "PLC modules", "HMI"]
+      },
+      { "brand": "Toshiba", "lines": ["Variable frequency drives"] },
+      { "brand": "Schneider", "lines": ["Variable frequency drives"] }
+    ]
+  },
+  {
+    "slug": "cable-accessories",
+    "name": "Cable accessories and terminations",
+    "short": "Cable accessories",
+    "intro": "Glands, termination kits, connectors and marking systems, including flameproof glands and heat shrink kits up to 33 kV.",
+    "brands": [
+      {
+        "brand": "Comet and Braco",
+        "lines": [
+          "Single compression cable glands",
+          "Double compression weatherproof cable glands",
+          "Double compression flameproof cable glands"
+        ]
+      },
+      {
+        "brand": "Raychem and 3M",
+        "lines": [
+          "HT and LT heat shrink termination kits, indoor, outdoor and straight through, for 1.1, 6.6, 11, 22 and 33 kV power cables"
+        ]
+      },
+      {
+        "brand": "Lapp",
+        "lines": [
+          "Epic industry connectors",
+          "Skintop cable glands",
+          "Silvyn cable protection and supply systems",
+          "Fleximark marking systems"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "lighting",
+    "name": "Lighting",
+    "short": "Lighting",
+    "intro": "Commercial and industrial luminaires, and emergency exit lighting for compliance.",
+    "brands": [
+      {
+        "brand": "Orient Electric",
+        "lines": ["Commercial lighting", "Industrial lighting"]
+      },
+      { "brand": "Prolite", "lines": ["LED emergency exit lights"] }
+    ]
+  },
+  {
+    "slug": "fans-and-air-movement",
+    "name": "Fans and air movement",
+    "short": "Fans and air movement",
+    "intro": "Industrial air movement for shop floors and workshops, plus domestic and exhaust ranges.",
+    "brands": [
+      {
+        "brand": "Almonard",
+        "lines": [
+          "Industrial fans",
+          "Domestic fans",
+          "Man coolers",
+          "Heavy duty exhaust fans"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "earthing",
+    "name": "Earthing",
+    "short": "Earthing",
+    "intro": "Maintenance-free earthing electrodes in galvanized, zinc coated and copper plated finishes.",
+    "brands": [
+      {
+        "brand": "Earthing electrodes",
+        "lines": [
+          "Hot dip galvanized electrodes",
+          "Zinc coated electrodes",
+          "Copper plated electrodes"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "meters-and-instruments",
+    "name": "Meters and instruments",
+    "short": "Meters and instruments",
+    "intro": "Energy metering, motor protection and panel instrumentation.",
+    "brands": [
+      {
+        "brand": "L&T",
+        "lines": [
+          "Energy meters",
+          "Motor protection relays",
+          "Digital panel meters"
+        ]
+      },
+      { "brand": "Secure", "lines": ["Energy meters"] }
+    ]
+  }
+]

@@ -1,0 +1,73 @@
+---
+import company from '../data/company.json';
+import catalogue from '../data/catalogue.json';
+const a = company.address;
+const year = new Date().getFullYear();
+---
+<footer class="ft band-dark">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <p class="ft-name">{company.name}</p>
+        <address class="ft-addr">
+          {a.street}<br />
+          {a.building}<br />
+          {a.locality}, {a.city}<br />
+          {a.state} {a.postcode}
+        </address>
+        <p class="ft-line">
+          <a href={'tel:' + company.primaryPhoneHref}>+91 {company.primaryPhone}</a><br />
+          <a href={'mailto:' + company.email}>{company.email}</a>
+        </p>
+      </div>
+
+      <div>
+        <p class="ft-h">Products</p>
+        <ul class="ft-list">
+          {catalogue.map(c => <li><a href={'/products/' + c.slug + '/'}>{c.short}</a></li>)}
+        </ul>
+      </div>
+
+      <div>
+        <p class="ft-h">Company</p>
+        <ul class="ft-list">
+          <li><a href="/about/">About</a></li>
+          <li><a href="/brands/">Brands</a></li>
+          <li><a href="/industries/">Industries</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="ft-h">Enquiries</p>
+        <ul class="ft-list">
+          {company.contacts.map(c => (
+            <li><a href={'tel:+91' + c.phone}>{c.role}</a></li>
+          ))}
+        </ul>
+        <p class="ft-hours">{company.hours}</p>
+      </div>
+    </div>
+
+    <p class="ft-legal">&copy; {year} {company.name}. Distributor of genuine products from the principals listed. All brand names and trademarks are the property of their respective owners.</p>
+  </div>
+</footer>
+
+<style>
+.ft { padding-block: 56px 40px; }
+.ft-grid { display: grid; gap: var(--s7); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 640px) { .ft-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .ft-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: var(--s6); } }
+
+.ft-name { font-weight: 500; color: #fff; margin: 0 0 var(--s3); }
+.ft-addr { font-style: normal; color: #B9C6DC; font-size: 15px; margin: 0 0 var(--s4); line-height: 1.7; }
+.ft-line { font-size: 15px; margin: 0; font-variant-numeric: tabular-nums; line-height: 1.9; }
+.ft-line a, .ft-list a { color: #DCE5F2; }
+.ft-line a:hover, .ft-list a:hover { color: #fff; }
+
+.ft-h { font-size: 12px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; color: #E0A46A; margin: 0 0 var(--s3); }
+.ft-list { list-style: none; margin: 0; padding: 0; font-size: 15px; line-height: 2; }
+.ft-hours { font-size: 14px; color: #93A3BD; margin: var(--s4) 0 0; }
+
+.ft-legal { margin: var(--s8) 0 0; padding-top: var(--s5); border-top: 1px solid rgba(255,255,255,0.14); font-size: 13px; color: #93A3BD; max-width: 90ch; }
+</style>

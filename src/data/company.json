@@ -1,0 +1,70 @@
+{
+  "name": "Shriman Electrical Associates Pvt. Ltd.",
+  "shortName": "Shriman Electrical",
+  "founded": 2008,
+  "tagline": "Industrial electrical distribution, Navi Mumbai",
+  "address": {
+    "street": "Unit No. 43 & 44, Ground Floor, Phase 2",
+    "building": "Raheja Tesla Industrial Park",
+    "locality": "Juinagar",
+    "city": "Navi Mumbai",
+    "state": "Maharashtra",
+    "postcode": "400705",
+    "country": "IN"
+  },
+  "primaryPhone": "9320066181",
+  "primaryPhoneHref": "+919320066181",
+  "primaryWhatsapp": "919320344181",
+  "email": "shriman181@shrimanelectrical.com",
+  "hours": "Monday to Saturday, 10:00 to 19:00",
+  "md": {
+    "name": "Dinesh Maheshwari",
+    "role": "Managing Director",
+    "photo": "/md-dinesh-maheshwari.jpg",
+    "linkedin": "https://www.linkedin.com/in/dinesh-maheshwari-94283247/"
+  },
+  "contacts": [
+    {
+      "name": "Vishnu Sharma",
+      "role": "Sales enquiry",
+      "note": "New requirements, product availability, brand queries",
+      "phone": "9320344181",
+      "whatsapp": "919320344181",
+      "email": "shriman181@shrimanelectrical.com"
+    },
+    {
+      "name": "Sachin Kamble",
+      "role": "Quotation",
+      "note": "Rates against a BOQ or item list",
+      "phone": "9320031181",
+      "whatsapp": "919320344181",
+      "email": "shriman181@shrimanelectrical.com"
+    },
+    {
+      "name": "Mangesh Tiwari",
+      "role": "Billing and dispatch",
+      "note": "Invoices, delivery status, documentation",
+      "phone": "9320066181",
+      "whatsapp": "919320344181",
+      "email": "accounts@shrimanelectrical.com"
+    }
+  ],
+  "segments": [
+    {
+      "title": "Control panel builders",
+      "body": "Switchgear, busbar protection, APFC components and glands, supplied against panel schedules."
+    },
+    {
+      "title": "Machine builders and OEMs",
+      "body": "Drives, PLC and HMI, servo, and Lapp control and data cable for machine wiring."
+    },
+    {
+      "title": "Contractors and projects",
+      "body": "Cables, distribution boards, lighting, earthing and termination kits for site work."
+    },
+    {
+      "title": "Plant maintenance",
+      "body": "Stabilizers, UPS, fans and man coolers, meters and protection relays for running plants."
+    }
+  ]
+}

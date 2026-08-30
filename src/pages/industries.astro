@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Enquire from '../components/Enquire.astro';
+import company from '../data/company.json';
+import catalogue from '../data/catalogue.json';
+
+const picks = {
+  'Control panel builders': ['switchgear-protection', 'power-quality', 'cable-accessories'],
+  'Machine builders and OEMs': ['drives-and-automation', 'cables-and-wires', 'cable-accessories'],
+  'Contractors and projects': ['cables-and-wires', 'lighting', 'earthing'],
+  'Plant maintenance': ['power-quality', 'fans-and-air-movement', 'meters-and-instruments']
+};
+const bySlug = Object.fromEntries(catalogue.map(c => [c.slug, c]));
+const title = 'Industries we supply | Shriman Electrical Associates, Navi Mumbai';
+const description = 'We supply control panel builders, machine builders and OEMs, contractors and projects, and plant maintenance teams across Navi Mumbai and the TTC belt.';
+---
+<Base title={title} description={description}>
+<section class="band">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / Industries</p>
+    <p class="eyebrow">Who we supply</p>
+    <h1>Four kinds of buyer, one counter</h1>
+    <p class="lead">The same stock serves very different jobs. Here is what each type of customer usually comes to us for.</p>
+
+    <div class="segs">
+      {company.segments.map(s => (
+        <section class="seg">
+          <h2 class="seg-h">{s.title}</h2>
+          <p class="seg-p">{s.body}</p>
+          <ul class="seg-list">
+            {(picks[s.title] || []).map(sl => (
+              <li><a href={'/products/' + sl + '/'}>{bySlug[sl].short}</a></li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+
+    <div class="pad"><Enquire /></div>
+  </div>
+</section>
+</Base>
+
+<style>
+.segs { margin-top: var(--s7); display: grid; gap: var(--s5); }
+@media (min-width: 860px) { .segs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.seg { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--copper); border-radius: 0; padding: var(--s5); }
+@media (min-width: 768px) { .seg { padding: var(--s6); } }
+.seg-h { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 var(--s3); }
+.seg-p { color: var(--slate); font-size: 15px; margin: 0 0 var(--s5); }
+.seg-list { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s2); margin: 0; padding: 0; }
+.seg-list a { display: inline-block; border: 1px solid var(--line); border-radius: 8px; padding: 6px var(--s3); font-size: 13px; font-weight: 500; color: var(--navy); }
+.seg-list a:hover { border-color: var(--blue); color: var(--blue); text-decoration: none; }
+.pad { margin-top: var(--s8); }
+</style>

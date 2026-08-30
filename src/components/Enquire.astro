@@ -1,0 +1,26 @@
+---
+import company from '../data/company.json';
+const { topic } = Astro.props;
+const msg = topic
+  ? 'Hi, I would like to enquire about ' + topic + '. (via shrimanelectrical.com)'
+  : 'Hi, I would like to enquire about your products. (via shrimanelectrical.com)';
+const wa = 'https://wa.me/' + company.primaryWhatsapp + '?text=' + encodeURIComponent(msg);
+---
+<div class="enq">
+  <div>
+    <h3>Send us your requirement</h3>
+    <p class="enq-p">Share a BOQ, an item list, or just the rating you need. We will come back with availability and a rate.</p>
+  </div>
+  <div class="enq-act">
+    <a class="btn btn-wa" href={wa} rel="noopener">Enquire on WhatsApp</a>
+    <a class="btn btn-outline" href={'tel:' + company.primaryPhoneHref}>Call +91 {company.primaryPhone}</a>
+  </div>
+</div>
+
+<style>
+.enq { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--copper); border-radius: 0; padding: var(--s5); display: grid; gap: var(--s5); }
+@media (min-width: 860px) { .enq { grid-template-columns: 1fr auto; align-items: center; padding: var(--s6); } }
+.enq h3 { margin-bottom: var(--s2); }
+.enq-p { margin: 0; color: var(--slate); max-width: 52ch; }
+.enq-act { display: flex; flex-wrap: wrap; gap: var(--s3); }
+</style>

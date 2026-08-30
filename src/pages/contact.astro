@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import company from '../data/company.json';
+const a = company.address;
+const full = a.street + ', ' + a.building + ', ' + a.locality + ', ' + a.city + ', ' + a.state + ' ' + a.postcode;
+const mapQ = encodeURIComponent(a.building + ', ' + a.locality + ', ' + a.city + ', ' + a.state + ' ' + a.postcode);
+const title = 'Contact | Shriman Electrical Associates, Juinagar, Navi Mumbai';
+const description = 'Reach Shriman Electrical Associates at Raheja Tesla Industrial Park, Juinagar, Navi Mumbai. Direct numbers for sales enquiries, quotations, and billing and dispatch.';
+const wa = (num, role) => 'https://wa.me/' + num + '?text=' + encodeURIComponent('Hi, regarding ' + role.toLowerCase() + '. (via shrimanelectrical.com)');
+---
+<Base title={title} description={description}>
+<section class="band">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / Contact</p>
+    <p class="eyebrow">Contact</p>
+    <h1>Talk to the right person directly</h1>
+    <p class="lead">No call centre. Each part of the job has a named person and a direct number.</p>
+
+    <div class="people">
+      {company.contacts.map(c => (
+        <div class="p">
+          <p class="p-role">{c.role}</p>
+          <h2 class="p-name">{c.name}</h2>
+          <p class="p-note">{c.note}</p>
+          <p class="p-phone"><a href={'tel:+91' + c.phone}>+91 {c.phone}</a></p>
+          <p class="p-mail"><a href={'mailto:' + c.email}>{c.email}</a></p>
+          <a class="btn btn-wa p-wa" href={wa(c.whatsapp, c.role)} rel="noopener">WhatsApp us</a>
+        </div>
+      ))}
+    </div>
+
+    <div class="two">
+      <div>
+        <h2>Office and stock point</h2>
+        <address class="addr">
+          {company.name}<br />
+          {a.street}<br />
+          {a.building}<br />
+          {a.locality}, {a.city}<br />
+          {a.state} {a.postcode}
+        </address>
+        <p class="row"><span>Phone</span> <a href={'tel:' + company.primaryPhoneHref}>+91 {company.primaryPhone}</a></p>
+        <p class="row"><span>Email</span> <a href={'mailto:' + company.email}>{company.email}</a></p>
+        <p class="row"><span>Hours</span> <span>{company.hours}</span></p>
+        <p><a class="btn btn-outline" href={'https://www.google.com/maps/search/?api=1&query=' + mapQ} rel="noopener">Open in Maps</a></p>
+      </div>
+      <div class="mapbox">
+        <iframe
+          title="Map showing our office at Raheja Tesla Industrial Park, Juinagar, Navi Mumbai"
+          src={'https://maps.google.com/maps?q=' + mapQ + '&output=embed'}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</Base>
+
+<style>
+.people { display: grid; gap: var(--s5); margin: var(--s7) 0 var(--s9); }
+@media (min-width: 860px) { .people { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.p { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s5); display: flex; flex-direction: column; }
+.p-role { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--copper); margin: 0 0 var(--s2); }
+.p-name { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 var(--s3); }
+.p-note { font-size: 14px; color: var(--slate); margin: 0 0 var(--s4); }
+.p-phone { margin: 0 0 var(--s1); font-size: 17px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.p-mail { margin: 0 0 var(--s5); font-size: 14px; word-break: break-all; }
+.p-wa { margin-top: auto; }
+
+.two { display: grid; gap: var(--s7); }
+@media (min-width: 900px) { .two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s8); } }
+.addr { font-style: normal; line-height: 1.8; margin: 0 0 var(--s5); }
+.row { display: flex; gap: var(--s4); margin: 0 0 var(--s3); font-size: 15px; }
+.row span:first-child { min-width: 88px; color: var(--slate); }
+.mapbox { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; min-height: 340px; }
+.mapbox iframe { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; }
+</style>

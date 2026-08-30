@@ -1,17 +1,105 @@
 ---
+import Base from '../layouts/Base.astro';
+import Enquire from '../components/Enquire.astro';
+import company from '../data/company.json';
+import catalogue from '../data/catalogue.json';
 
+const brandNames = [...new Set(catalogue.flatMap(c => c.brands.map(b => b.brand)))].sort();
+const title = 'Shriman Electrical Associates | Industrial electrical distributor, Navi Mumbai';
+const description = 'Distributor of industrial electrical products in Juinagar, Navi Mumbai since 2008. Switchgear, cables, drives, automation, power quality and cable accessories.';
 ---
+<Base title={title} description={description}>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<section class="hero band-dark">
+  <div class="wrap">
+    <p class="eyebrow">Industrial electrical distribution</p>
+    <h1>One source for the switchgear, cable and automation your job actually specifies.</h1>
+    <p class="lead">Stockists in Juinagar serving Navi Mumbai, Thane and Mumbai since 2008 &mdash; supplying panel builders, machine builders, contractors and plant maintenance teams.</p>
+    <div class="hero-act">
+      <a class="btn btn-primary" href="/products/">Browse product lines</a>
+      <a class="btn btn-outline" href="/contact/">Talk to us</a>
+    </div>
+    <dl class="stats">
+      <div><dt>Established</dt><dd>2008</dd></div>
+      <div><dt>Principal brands</dt><dd>{brandNames.length}</dd></div>
+      <div><dt>Product categories</dt><dd>{catalogue.length}</dd></div>
+      <div><dt>Based in</dt><dd>Navi Mumbai</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="band band-white">
+  <div class="wrap">
+    <p class="eyebrow">Brands we distribute</p>
+    <h2>Genuine product, from the principals you specify</h2>
+    <p class="lead">We supply original product with full documentation. If a drawing calls for a particular make, that is what you get.</p>
+    <ul class="brandwall">
+      {brandNames.map(b => <li>{b}</li>)}
+    </ul>
+    <p class="note"><a href="/brands/">See what each brand covers</a></p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Product lines</p>
+    <h2>What we deal in</h2>
+    <p class="lead">Nine categories covering LT distribution, power quality, cable, automation and site accessories.</p>
+    <div class="grid g-3 cats">
+      {catalogue.map(c => (
+        <a class="card card-link" href={'/products/' + c.slug + '/'}>
+          <h3>{c.name}</h3>
+          <p class="cat-p">{c.intro}</p>
+          <p class="cat-b">{c.brands.map(b => b.brand).join(' · ')}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="band band-white">
+  <div class="wrap">
+    <p class="eyebrow">Who we supply</p>
+    <h2>Four kinds of buyer, one counter</h2>
+    <div class="grid g-2 segs">
+      {company.segments.map(s => (
+        <div class="seg">
+          <h3>{s.title}</h3>
+          <p class="cat-p">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <Enquire />
+  </div>
+</section>
+
+</Base>
+
+<style>
+.hero { padding-block: 72px; }
+@media (min-width: 768px) { .hero { padding-block: 120px 96px; } }
+.hero h1 { max-width: 20ch; }
+.hero-act { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
+
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); margin: var(--s8) 0 0; padding-top: var(--s5); border-top: 1px solid rgba(255,255,255,0.16); }
+@media (min-width: 768px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stats dt { font-size: 13px; color: #93A3BD; margin-bottom: var(--s1); }
+.stats dd { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: #fff; font-variant-numeric: tabular-nums; }
+
+.brandwall { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s3); margin: var(--s6) 0 0; padding: 0; }
+.brandwall li { border: 1px solid var(--line); border-radius: 8px; padding: 10px var(--s4); font-size: 15px; font-weight: 500; color: var(--navy); background: var(--canvas); }
+.note { margin: var(--s5) 0 0; font-size: 15px; }
+
+.cats { margin-top: var(--s6); }
+.cat-p { font-size: 15px; color: var(--slate); margin: 0 0 var(--s4); }
+.cat-b { font-size: 13px; color: var(--slate); margin: 0; padding-top: var(--s3); border-top: 1px solid var(--line); }
+
+.segs { margin-top: var(--s6); }
+.seg { border-left: 3px solid var(--copper); padding-left: var(--s5); }
+.seg h3 { margin-bottom: var(--s2); }
+</style>

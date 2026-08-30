@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Enquire from '../components/Enquire.astro';
+import catalogue from '../data/catalogue.json';
+
+const map = new Map();
+for (const cat of catalogue) {
+  for (const b of cat.brands) {
+    if (!map.has(b.brand)) map.set(b.brand, []);
+    map.get(b.brand).push({ cat, lines: b.lines });
+  }
+}
+const brands = [...map.entries()].sort((a, z) => a[0].localeCompare(z[0]));
+const title = 'Brands we distribute | Shriman Electrical Associates, Navi Mumbai';
+const description = 'The principal brands we distribute and what we carry from each, including L&T, Siemens, Schneider, Polycab, Lapp, Legrand, Mitsubishi and more.';
+---
+<Base title={title} description={description}>
+<section class="band">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / Brands</p>
+    <p class="eyebrow">Principals</p>
+    <h1>Brands we distribute</h1>
+    <p class="lead">Genuine product with full documentation. Below is what we carry from each principal and where it sits in our product lines.</p>
+
+    <div class="bl">
+      {brands.map(([name, entries]) => (
+        <section class="b">
+          <h2 class="b-h">{name}</h2>
+          <div class="b-body">
+            {entries.map(e => (
+              <div class="b-cat">
+                <a class="b-tag" href={'/products/' + e.cat.slug + '/'}>{e.cat.short}</a>
+                <ul class="b-list">
+                  {e.lines.map(l => <li>{l}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <div class="pad"><Enquire /></div>
+  </div>
+</section>
+</Base>
+
+<style>
+.bl { margin-top: var(--s7); display: grid; gap: var(--s5); }
+.b { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s5); }
+@media (min-width: 768px) { .b { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--s6); padding: var(--s6); } }
+.b-h { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 var(--s4); }
+@media (min-width: 768px) { .b-h { margin: 0; } }
+.b-body { display: grid; gap: var(--s5); }
+.b-tag { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--copper); margin-bottom: var(--s2); }
+.b-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.b-list li { position: relative; padding-left: var(--s5); font-size: 15px; line-height: 1.55; }
+.b-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: var(--line); border-radius: 1px; }
+.pad { margin-top: var(--s8); }
+</style>

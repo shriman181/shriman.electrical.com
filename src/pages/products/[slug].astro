@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import Enquire from '../../components/Enquire.astro';
+import catalogue from '../../data/catalogue.json';
+
+export function getStaticPaths() {
+  return catalogue.map(cat => ({
+    params: { slug: cat.slug },
+    props: { cat }
+  }));
+}
+
+const { cat } = Astro.props;
+const others = catalogue.filter(c => c.slug !== cat.slug);
+const title = cat.name + ' supplier in Navi Mumbai | Shriman Electrical Associates';
+const description = cat.intro;
+---
+<Base title={title} description={description}>
+<section class="band">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / <a href="/products/">Products</a> / {cat.short}</p>
+    <p class="eyebrow">Product line</p>
+    <h1>{cat.name}</h1>
+    <p class="lead">{cat.intro}</p>
+
+    <div class="lines">
+      {cat.brands.map(b => (
+        <section class="blk">
+          <h2 class="blk-h">{b.brand}</h2>
+          <ul class="blk-list">
+            {b.lines.map(l => <li>{l}</li>)}
+          </ul>
+        </section>
+      ))}
+    </div>
+
+    <div class="pad"><Enquire topic={cat.name.toLowerCase()} /></div>
+
+    <nav class="more" aria-label="Other product lines">
+      <p class="eyebrow">Other product lines</p>
+      <ul class="more-list">
+        {others.map(o => <li><a href={'/products/' + o.slug + '/'}>{o.short}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</section>
+</Base>
+
+<style>
+.lines { margin-top: var(--s7); display: grid; gap: var(--s5); }
+.blk { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s5); }
+@media (min-width: 768px) { .blk { padding: var(--s6); } }
+.blk-h { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 var(--s4); padding-bottom: var(--s3); border-bottom: 1px solid var(--line); }
+.blk-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
+@media (min-width: 700px) { .blk-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3) var(--s6); } }
+.blk-list li { position: relative; padding-left: var(--s5); color: var(--ink); font-size: 15px; line-height: 1.55; }
+.blk-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: var(--copper); border-radius: 1px; }
+.pad { margin-top: var(--s8); }
+.more { margin-top: var(--s8); padding-top: var(--s5); border-top: 1px solid var(--line); }
+.more-list { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s3); margin: 0; padding: 0; }
+.more-list a { display: inline-block; border: 1px solid var(--line); border-radius: 8px; padding: 8px var(--s4); font-size: 14px; font-weight: 500; color: var(--navy); background: var(--surface); }
+.more-list a:hover { border-color: var(--blue); color: var(--blue); text-decoration: none; }
+</style>

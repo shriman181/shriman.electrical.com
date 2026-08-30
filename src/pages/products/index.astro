@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import Enquire from '../../components/Enquire.astro';
+import catalogue from '../../data/catalogue.json';
+const title = 'Product lines | Shriman Electrical Associates, Navi Mumbai';
+const description = 'The industrial electrical product lines we deal in: switchgear, power quality, cables, drives and automation, cable accessories, lighting, fans, earthing and meters.';
+---
+<Base title={title} description={description}>
+<section class="band">
+  <div class="wrap">
+    <p class="crumbs"><a href="/">Home</a> / Products</p>
+    <p class="eyebrow">Product lines</p>
+    <h1>What we deal in</h1>
+    <p class="lead">Nine categories, listed by the brands we distribute in each. For ratings, sizes and availability, send us the requirement.</p>
+
+    <div class="grid g-3 cats">
+      {catalogue.map(c => (
+        <a class="card card-link" href={'/products/' + c.slug + '/'}>
+          <h3>{c.name}</h3>
+          <p class="cat-p">{c.intro}</p>
+          <p class="cat-b">{c.brands.map(b => b.brand).join(' · ')}</p>
+        </a>
+      ))}
+    </div>
+
+    <div class="pad"><Enquire /></div>
+  </div>
+</section>
+</Base>
+
+<style>
+.cats { margin-top: var(--s6); }
+.cat-p { font-size: 15px; color: var(--slate); margin: 0 0 var(--s4); }
+.cat-b { font-size: 13px; color: var(--slate); margin: 0; padding-top: var(--s3); border-top: 1px solid var(--line); }
+.pad { margin-top: var(--s8); }
+</style>
